@@ -11,9 +11,10 @@ p{
 
 .fancy{
     color: red;
-    border: 2px;
-    background-color: aliceblue;
+    border: 4px;
+    border-style: solid;
     border-radius: 8px;
+    background-color: coral;
 }
 
 /*use id selector to define style*/
