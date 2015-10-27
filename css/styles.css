@@ -4,19 +4,29 @@ p{
     font-size: 32px;
 }
 
-/*use class selector to define style for elements. Note: always start with a dot (.) !!*/
-.mun_keksima{
-    background-color: aquamarine;  
+div{
+    
 }
 
+/*use class selector to define style for elements. Note: always start with a dot (.) !!*/
+.mun_keksima{
+    background-color: red;  
+}
+
+/*itse määritelty class tyyli*/
 .fancy{
     color: red;
     border: 2px;
-    background-color: aliceblue;
+    background-color: blue;
     border-radius: 8px;
 }
 
 /*use id selector to define style*/
+/*itse määritelty id selector. Ohje: käytä vain yhdessä elementissä HTML dokumentissa*/
 #joku_tyyli{
     margin: 100px;
 }
+
+p:hover{
+  background-color: green;   
+} 
