@@ -7,11 +7,11 @@ $(document).ready(function () {
     console.log("jquery onload triggered");
     //$("nav").css("background-color","lightblue");
     //$("footer").css("background-color", "darkblue");
-    //$("[class]").css("background-color", "grey");
+    $("[class]").css("background-color", "grey");
     $("#head").css("background-color", "red").css("padding", "20px").css("border-radius", "8px");
     
     $(".about").html("New text from jQuery"); //Add new text.
-    $("[data-dummy]").html("<p>Hello World</p>"); //Muuttaa data-dummy elementin tekstin
+    //$("[data-dummy]").html("<p>Hello World</p>"); //Muuttaa data-dummy elementin tekstin
     
     var setting =  {
         
@@ -33,7 +33,7 @@ $(document).ready(function () {
                         "<td>" + data.rows[i].age + "</td>" +
                         "</tr>";
             
-            $(html).appendTo("tbody");
+            $(html).appendTo("tbody"); 
             
         }
     });
