@@ -1,3 +1,4 @@
+//"use strict";
 console.log("Here we go again!");
 
 //Wait document ready event
@@ -5,14 +6,26 @@ $(document).ready(function () {
     
     console.log("jquery onload triggered");
     //$("nav").css("background-color","lightblue");
-    $("footer").css("background-color","darkblue");
-    $("[class]").css("background-color","grey");
-    $("#head").css("background-color","red")
-    .css("padding","20px")
-    .css("border-radius","8px");
+    //$("footer").css("background-color", "darkblue");
+    //$("[class]").css("background-color", "grey");
+    $("#head").css("background-color", "red").css("padding", "20px").css("border-radius", "8px");
     
-    $(".about").html("<u>New text from jQuery</u>");
-    $("[data-dummy]").html("<p>Hello World</p>");
+    $(".about").html("<u>New text from jQuery</u>"); //Add new text.
+    $("[data-dummy]").html("<p>Hello World</p>"); //Muuttaa data-dummy elementin tekstin
+    
+    var setting =  {
+        
+        method: "GET",
+        url: "http://localhost:28017/oma/person/",
+        dataType: "jsonp",
+        jsonp: "jsonp"
+        
+    };
+    
+    
+    $.ajax(setting).done(function (data) {
+        console.log(data);
+    });
     
 });
 
