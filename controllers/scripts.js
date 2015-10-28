@@ -10,7 +10,7 @@ $(document).ready(function () {
     //$("[class]").css("background-color", "grey");
     $("#head").css("background-color", "red").css("padding", "20px").css("border-radius", "8px");
     
-    $(".about").html("<u>New text from jQuery</u>"); //Add new text.
+    $(".about").html("New text from jQuery"); //Add new text.
     $("[data-dummy]").html("<p>Hello World</p>"); //Muuttaa data-dummy elementin tekstin
     
     var setting =  {
@@ -23,8 +23,19 @@ $(document).ready(function () {
     };
     
     
-    $.ajax(setting).done(function (data) {
+    $.ajax(setting).done(function(data) {
         console.log(data);
+        for (i = 0; i < data.rows.length; i++) {
+            
+            var html = "<tr>" +
+                        "<td>" + data.rows[i].name + "</td>" +
+                        "<td>" + data.rows[i].address + "</td>" +
+                        "<td>" + data.rows[i].age + "</td>" +
+                        "</tr>";
+            
+            $(html).appendTo("tbody");
+            
+        }
     });
     
 });
