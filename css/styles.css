@@ -16,9 +16,15 @@ div{
 /*itse määritelty class tyyli*/
 .fancy{
     color: red;
+<<<<<<< HEAD
     border: 2px;
     background-color: blue;
+=======
+    border: 4px;
+    border-style: solid;
+>>>>>>> 627d6bdf3fc33b0f4b8ce481da843515629c1179
     border-radius: 8px;
+    background-color: coral;
 }
 
 /*use id selector to define style*/
