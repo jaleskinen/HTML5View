@@ -38,7 +38,7 @@ $(document).ready(function () {
             for (i = 1; i < headers.length; i++) {
                 //Create header and add it to row
                 $("<th>" + headers[i] + "</th>").appendTo(row);
-                }   
+                }
                 //Add row to thead element
                 $(row).appendTo("thead");
         }
