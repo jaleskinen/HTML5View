@@ -58,12 +58,18 @@ $(document).ready(function () {
             $(html).appendTo("tbody"); */
             //All tbody tables, use selectors to use only one if several tbodys in use.
             
-            var row2 = $("<tr></tr>");
-            for (k = 1; k < headers.length; k++) {
-            $("<td>" + data.rows[i][headers[k]] + "</td>").appendTo(row2);
-            }
-            $(row2).appendTo("tbody");
-                    
+            //Create data rows also dynamically, check that rows length is > 0
+            if(data.rows.length > 0) {
+
+                //Create row for data
+                var row2 = $("<tr></tr>");
+                for (k = 1; k < headers.length; k++) {
+                //Create data and add it to row
+                $("<td>" + data.rows[i][headers[k]] + "</td>").appendTo(row2);
+                }
+                //Add row to thead element
+                $(row2).appendTo("tbody");
+            }    
         }
     });
         
