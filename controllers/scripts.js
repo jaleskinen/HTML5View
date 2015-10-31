@@ -18,6 +18,7 @@ $(document).ready(function () {
         
         method: "GET",  //default method is GET
         url: "http://localhost:28017/oma/person/",
+        //url: "http://localhost:28017/testi/person/",
         dataType: "jsonp",
         jsonp: "jsonp"
         
@@ -45,28 +46,27 @@ $(document).ready(function () {
 
         
         for (i = 0; i < data.rows.length; i++) {
-            
-            
-            /*html += "<tr>";
-            for(var k =0;k<headers.length;k++)
-                {
-                    html += "<td>" + data.rows[k][headers[k]] + "</td>;"
-                }
-            html += "</tr>"; */
-            
-            var html = "<tr>" +
+
+
+            /*var html = "<tr>" +
                         "<td>" + data.rows[i].name + "</td>" +
                         "<td>" + data.rows[i].address + "</td>" +
                         "<td>" + data.rows[i].age + "</td>" +
                         "<td>" + data.rows[i].email + "</td>" +
                         "</tr>";
+                        
+            $(html).appendTo("tbody"); */
+            //All tbody tables, use selectors to use only one if several tbodys in use.
             
-            $(html).appendTo("tbody"); //All tbody tables, use selectors to use only one if several tbodys in use.
-            
-            
+            var row2 = $("<tr></tr>");
+            for (k = 1; k < headers.length; k++) {
+            $("<td>" + data.rows[i][headers[k]] + "</td>").appendTo(row2);
+            }
+            $(row2).appendTo("tbody");
+                    
         }
     });
-    
+        
 });
 
 /*$(document).ready(domReady);
