@@ -1,5 +1,6 @@
 var express = require("express");
 var path = require("path");
+var database = require('./modules/database');
 
 var app = express();
 
@@ -11,6 +12,8 @@ app.use(function (req, res, next) {
     console.log(req.method);
     console.log(req.path);
     console.log(__dirname);
+    console.log(database.Person);
+    database.myFunction();
     //send request forward in stack
     next();
 });
