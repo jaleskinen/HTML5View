@@ -1,11 +1,10 @@
-
 var express = require("express");
 var path = require("path");
 
 var app = express();
 
 //============ MIDDLEWARES =================
-// MIDDLEWARES MUST BE BEFORE ROUTERS
+// Must be befoer routers, sometimes also order is fixed
 
 app.use(function (req, res, next) {
         
