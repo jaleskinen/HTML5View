@@ -1,7 +1,8 @@
 var express = require("express");
 var path = require("path");
 var database = require('./modules/database');
-
+var queries = require('./modules/queries');
+var person = require('./modules/person');
 var app = express();
 
 //============ MIDDLEWARES =================
@@ -23,11 +24,13 @@ app.use('/css', express.static(path.join(__dirname, 'css')));
 app.use('/lib', express.static(path.join(__dirname, 'lib')));
 app.use('/controllers', express.static(path.join(__dirname, 'controllers')));
 
+app.use('/persons', person);
+
 //============ ROUTERS======================
 
 app.get("/persons", function (req, res) {
     
-    res.send("Hello persons there");
+    queries.getAllPersons(req, res);
     
 
 });

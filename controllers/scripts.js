@@ -18,10 +18,8 @@ $(document).ready(function () {
     var setting =  {
         
         method: "GET",  //default method is GET
-        url: "http://localhost:28017/oma/person/",
-        //url: "http://localhost:28017/testi/person/",
-        dataType: "jsonp",
-        jsonp: "jsonp"
+        url: "http://localhost:3000/persons",
+        dataType: "json"
         
     };
     
@@ -31,11 +29,11 @@ $(document).ready(function () {
         var i = 0, k = 0, headers = 0, row = 0, row2 = 0;
   
         //get all keys (attribute names)from json object
-        console.log(Object.keys(data.rows[0]));
+        console.log(Object.keys(data[0]));
         
         //Create headers also dynamically, check that rows length is > 0
-        if (data.rows.length > 0) {
-            headers = Object.keys(data.rows[0]);
+        if (data.length > 0) {
+            headers = Object.keys(data[0]);
             //Create row for headers
             row = $("<tr></tr>");
             for (i = 1; i < headers.length; i++) {
@@ -47,27 +45,27 @@ $(document).ready(function () {
         }
 
         
-        for (i = 0; i < data.rows.length; i++) {
+        for (i = 0; i < data.length; i++) {
 
 
             /*var html = "<tr>" +
-                        "<td>" + data.rows[i].name + "</td>" +
-                        "<td>" + data.rows[i].address + "</td>" +
-                        "<td>" + data.rows[i].age + "</td>" +
-                        "<td>" + data.rows[i].email + "</td>" +
+                        "<td>" + data[i].name + "</td>" +
+                        "<td>" + data[i].address + "</td>" +
+                        "<td>" + data[i].age + "</td>" +
+                        "<td>" + data[i].email + "</td>" +
                         "</tr>";
                         
             $(html).appendTo("tbody"); */
             //All tbody tables, use selectors to use only one if several tbodys in use.
             
             //Create data rows also dynamically, check that rows length is > 0
-            if (data.rows.length > 0) {
+            if (data.length > 0) {
 
                 //Create row for data
                 row2 = $("<tr></tr>");
                 for (k = 1; k < headers.length; k++) {
                     //Create data and add it to row
-                    $("<td>" + data.rows[i][headers[k]] + "</td>").appendTo(row2);
+                    $("<td>" + data[i][headers[k]] + "</td>").appendTo(row2);
                 }
                 //Add row to thead element
                 $(row2).appendTo("tbody");
