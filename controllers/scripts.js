@@ -115,7 +115,10 @@ $(document).ready(function () {
 
 function buildModifyUI(person_data) {
     
-    var html = "<input type='text' value='" + person_data.name + "'/>";
+    var html = "<h4>Name:</h4>" + 
+        "<input type='text' value='" + person_data.name + "'/><br>" +
+        "<h4>Address:</h4>" +
+        "<input type='text' value='" + person_data.address + "'/><br>";
     $("body").html(html);
     
 }
