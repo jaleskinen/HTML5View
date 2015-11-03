@@ -32,3 +32,17 @@ exports.saveNewPerson = function (req, res) {
         res.send("Database action done");
     });
 };
+/*
+This function updates person information to person colletion
+*/
+exports.updatePerson = function (req, res) {
+    
+   var personTemp = new db.Person(req.body);
+    
+    //Save updates to database
+    personTemp.save(function (err, ok) {
+        
+        res.send("Database update action done");
+    });
+    
+};

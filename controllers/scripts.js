@@ -43,6 +43,7 @@ $(document).ready(function () {
                 //Create header and add it to row
                 $("<th>" + headers[i] + "</th>").appendTo(row);
             }
+            $("<th>" + "Modify" + "</th>").appendTo(row);
             //Add row to thead element
             $(row).appendTo("thead");
         }
@@ -50,19 +51,20 @@ $(document).ready(function () {
         
         for (i = 0; i < data.length; i++) {
 
-
+/*
             var html = "<tr>" +
                         "<td>" + data[i].name + "</td>" +
                         "<td>" + data[i].address + "</td>" +
                         "<td>" + data[i].age + "</td>" +
+                        "<td>" + data[i].email + "</td>" +
                         "<td><input type='button' id=" + data[i]._id + " value='Modify'/></td>" +
                         "</tr>";
                         
-            $(html).appendTo("tbody");
+            $(html).appendTo("tbody");*/
             //All tbody tables, use selectors to use only one if several tbodys in use.
             
             //Create data rows also dynamically, check that rows length is > 0
-            /*if (data.length > 0) {
+            if (data.length > 0) {
 
                 //Create row for data
                 row2 = $("<tr></tr>");
@@ -70,9 +72,10 @@ $(document).ready(function () {
                     //Create data and add it to row
                     $("<td>" + data[i][headers[k]] + "</td>").appendTo(row2);
                 }
+                $("<td><input type='button' id=" + data[i]._id + " value='Modify'/></td>").appendTo(row2);
                 //Add row to thead element
                 $(row2).appendTo("tbody");
-            }*/
+            }
         }
         
         //Add person start
@@ -115,10 +118,20 @@ $(document).ready(function () {
 
 function buildModifyUI(person_data) {
     
-    var html = "<h4>Name:</h4>" + 
-        "<input type='text' value='" + person_data.name + "'/><br>" +
+    var html = "<form method='post' enctype='application/json' action='/persons'>" +
+        "<h4>Name:</h4>" + 
+        "<input type='text' value='" + person_data.name + "' name ='name'/><br>" +
         "<h4>Address:</h4>" +
-        "<input type='text' value='" + person_data.address + "'/><br>";
+        "<input type='text' value='" + person_data.address + "' name ='address'/><br>" +
+        "<h4>Age:</h4>" +
+        "<input type='text' value='" + person_data.age + "' name ='age'/><br>" +
+        "<h4>Email:</h4>" +
+        "<input type='text' value='" + person_data.email + "' name ='email'/><br><br>" +
+        "<input type='submit' value='Update'/><input type='submit' value='Delete'/>" + 
+        "<input type='submit' value='Cancel'/>" +
+        "</form>"
+        
+       /* "<input type='submit' value='Update'/><input type='submit' value='Delete'/>";*/
     $("body").html(html);
     
 }

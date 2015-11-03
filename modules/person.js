@@ -15,9 +15,10 @@ router.post('/', function (req, res) {
     db.saveNewPerson(req, res);
 });
 
+//Handle PUT request for /updatepersons context
 router.put('/', function (req, res) {
     
-    
+    db.updatePerson(req, res);
 });
 
 router.delete('/', function (req, res) {
