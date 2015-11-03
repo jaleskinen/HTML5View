@@ -4,6 +4,9 @@
 
 console.log("Here we go again!");
 
+//This variable is shown to every function
+//var g_person_data;
+
 //Wait document ready event
 $(document).ready(function () {
     "use strict";
@@ -48,18 +51,18 @@ $(document).ready(function () {
         for (i = 0; i < data.length; i++) {
 
 
-            /*var html = "<tr>" +
+            var html = "<tr>" +
                         "<td>" + data[i].name + "</td>" +
                         "<td>" + data[i].address + "</td>" +
                         "<td>" + data[i].age + "</td>" +
-                        "<td>" + data[i].email + "</td>" +
+                        "<td><input type='button' id=" + data[i]._id + " value='Modify'/></td>" +
                         "</tr>";
                         
-            $(html).appendTo("tbody"); */
+            $(html).appendTo("tbody");
             //All tbody tables, use selectors to use only one if several tbodys in use.
             
             //Create data rows also dynamically, check that rows length is > 0
-            if (data.length > 0) {
+            /*if (data.length > 0) {
 
                 //Create row for data
                 row2 = $("<tr></tr>");
@@ -69,7 +72,7 @@ $(document).ready(function () {
                 }
                 //Add row to thead element
                 $(row2).appendTo("tbody");
-            }
+            }*/
         }
         
         //Add person start
@@ -91,13 +94,33 @@ $(document).ready(function () {
         //Add person end
         
 
+       //Get all elements from DOM where element has attribute 'tye' with value 'button'
+        //Then add event handler for click event for each of them.
+        $("[type=button]").click(function (click_data) {
+
+            console.log(click_data);
+            for (i = 0; i < data.length; i++) {
+                
+                //Check if id from button matches on of person id
+                if (click_data.currentTarget.id == data[i]._id) {
+                    
+                    buildModifyUI(data[i]);
+                    break;
+                }
+            }
+        });
         
     });
-        
 });
 
+function buildModifyUI(person_data) {
+    
+    var html = "<input type='text' value='" + person_data.name + "'/>";
+    $("body").html(html);
+    
+}
 
-        //Test 
+        // Add person Test 
 /*
 
 function omaFunction() {
