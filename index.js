@@ -9,8 +9,9 @@ var app = express();
 //============ MIDDLEWARES =================
 // Must be befoer routers, sometimes also order is fixed
 
-//bodyParser json() middleware parses the json object from HTTP POST request
+//bodyParser urlencoded() middleware parses the json object from HTTP POST request
 app.use(bodyParser.urlencoded());
+
 
 app.use(function (req, res, next) {
         

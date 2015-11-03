@@ -3,9 +3,9 @@ var db = require('./database');
 /*
 This function gets all ducuments from person colletion
 */
-exports.getAllPersons = function(req, res) {
+exports.getAllPersons = function (req, res) {
     
-    db.Person.find(function(err, data) {
+    db.Person.find(function (err, data) {
         
         if (err) {
             
@@ -15,5 +15,20 @@ exports.getAllPersons = function(req, res) {
             
             res.send(data);
         }
+    });
+};
+
+
+/*
+This function saves new person information to person colletion
+*/
+exports.saveNewPerson = function (req, res) {
+    
+    var personTemp = new db.Person(req.body);
+    
+    //Save it to database
+    personTemp.save(function (err, ok) {
+        
+        res.send("Database action done");
     });
 };

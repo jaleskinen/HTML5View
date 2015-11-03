@@ -20,7 +20,8 @@ function connectionStatus(err, ok) {
 var Person = mongoose.model('Person', {
     name: String,
     address: String,
-    age: {type: Number}
+    age: {type: Number},
+    email: String
 },'person');
 
 //Using exports object you expose the data to other modules
