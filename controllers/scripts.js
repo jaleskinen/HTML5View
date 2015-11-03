@@ -71,10 +71,44 @@ $(document).ready(function () {
                 $(row2).appendTo("tbody");
             }
         }
+        
+        //Add person start
+
+      /*      var html = "<tr>" +
+                        "<td>" + "<input type=" + "'text'" + "id=" + "'name'" + "placeholder=" + "'Enter name'" 
+                        + "/>" + "</td>" +
+                        "<td>" + "<input type=" + "'text'" + "id=" + "'address'" + "placeholder=" + "'Enter address'" 
+                        + "/>" + "</td>" +
+                        "<td>" + "<input type=" + "'number'" + "id=" + "'age'" + "placeholder=" + "'Enter age'" 
+                        + "/>" + "</td>" +
+                        "<td>" + "<input type=" + "'email'" + "id=" + "'email'" + "placeholder=" + "'Enter email'" 
+                        + "/>" + "</td>" +
+                        "<td>" + "<input type=" + "'submit'" + "value=" + "'Submit'" + "/>" + "</td>" +
+                        "</tr>";
+                        
+            $(html).appendTo(".addperson");
+            */
+        //Add person end
+        
+
+        
     });
         
 });
 
+
+        //Test 
+/*
+
+function omaFunction() {
+    document.getElementById("name").value = "Testi nimi";
+    document.getElementById("address").value = "Testi osoite";
+    document.getElementById("age").value = "999";
+    document.getElementById("email").value = "Testi@email";
+};
+*/
+
+        //test end
 /*$(document).ready(domReady);
 function domReady(){
 

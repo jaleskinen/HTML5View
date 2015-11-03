@@ -1,9 +1,47 @@
 <!doctype html>
 <html lang="fi">
     <head>
+        <meta charset="utf-8">
+       <!-- <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>-->
+
         <title>Person Add</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet"/>
+        <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet"/>
+ 
+        
     </head>
     <body>
-        <h1>Add new contact info:</h1>
-    </body>      
+        <h1>Add new contact info</h1>
+        
+        <form method="post" enctype="application/json" action="/persons">
+            
+            <h4>Name:</h4>
+            <input type="text" required placeholder="Full name" name ="name"/><br>
+            <h4>Address:</h4>
+            <input type="text"  placeholder="Full address" name ="address" /><br>
+            <h4>Age:</h4>
+            <input type="number" placeholder="Age" name ="age" min="0" /><br>
+            <h4>Email:</h4>
+            <input type="email" placeholder="email@com" name ="email" /><br><br>
+            <input type="submit" value="Send"/>
+        
+        
+        </form>
+        
+        <!-- TEsti start
+        <table class="table">          
+            <thead class = "addperson">
+            </thead>       
+            <tbody>
+            </tbody>     
+            <button onclick="omaFunction()">Try it</button>
+        </table>
+        
+       TEsti end --> 
+        
+        
+        <script src="/lib/jquery-2.1.4.min.js"></script>
+        <script src="/controllers/scripts.js"></script>
+    </body>   
 </html>

@@ -28,6 +28,6 @@ exports.Person = Person;
 
 exports.myFunction = function() {
     
-    console.log("This ");
+    console.log("This note is from exports.myFunction");
 };
 
