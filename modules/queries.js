@@ -32,17 +32,53 @@ exports.saveNewPerson = function (req, res) {
         res.send("Database action done");
     });
 };
+
 /*
-This function updates person information to person colletion
+This function deletes one person from person colletion
+*/
+exports.deletePerson = function (req, res) {
+    
+    //Here req.params.id return string "id=35635463456345f"
+    //Split function splits the string from "0" and creates an array
+    //where [0] contains "id" and [1] contains "35635463456345f"
+    var id = req.params.id.split("=")[1];
+    
+    db.Person.remove({_id: id}, function (err) {
+        if (err) {
+            
+            res.send(err.message);
+        } else {
+            
+            res.send("Delete done");
+        }
+       
+    });
+    
+};
+
+/*
+This method updates person information to person colletion
 */
 exports.updatePerson = function (req, res) {
     
-   var personTemp = new db.Person(req.body);
+    var updateData = {
+        name: req.body.name,
+        address: req.body.address,
+        age: req.body.age,
+        email: req.body.email
+    };
     
-    //Save updates to database
-    personTemp.save(function (err, ok) {
+    db.Person.update({_id: req.body.id}, updateData, function (err) {
+        if (err) {
+            
+            res.send(err.message);
+        } else {
+            
+            res.send("Updated");
+            //res.send({data:"ok"});
+        }
         
-        res.send("Database update action done");
     });
+
     
 };

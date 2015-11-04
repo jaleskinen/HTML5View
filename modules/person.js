@@ -15,15 +15,16 @@ router.post('/', function (req, res) {
     db.saveNewPerson(req, res);
 });
 
-//Handle PUT request for /updatepersons context
+//Handle UPDATE request for /persons context
 router.put('/', function (req, res) {
     
     db.updatePerson(req, res);
 });
 
-router.delete('/', function (req, res) {
+//Handle DELETE request for /persons context, id comes from request (scripts.js)
+router.delete('/:id', function (req, res) {
     
-    
+    db.deletePerson(req, res);
 });
 
 module.exports = router;

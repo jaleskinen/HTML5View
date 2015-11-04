@@ -118,21 +118,50 @@ $(document).ready(function () {
 
 function buildModifyUI(person_data) {
     
-    var html = "<form method='post' enctype='application/json' action='/persons'>" +
-        "<h4>Name:</h4>" + 
-        "<input type='text' value='" + person_data.name + "' name ='name'/><br>" +
+    var html = /*"<form method='put' enctype='application/json' action='/persons'>" +*/
+        "<h4>Name:</h4>" +
+        "<input type='text' value='" + person_data.name + "' id ='name'/><br>" +
         "<h4>Address:</h4>" +
-        "<input type='text' value='" + person_data.address + "' name ='address'/><br>" +
+        "<input type='text' value='" + person_data.address + "' id ='address'/><br>" +
         "<h4>Age:</h4>" +
-        "<input type='text' value='" + person_data.age + "' name ='age'/><br>" +
+        "<input type='text' value='" + person_data.age + "' id ='age'/><br>" +
         "<h4>Email:</h4>" +
-        "<input type='text' value='" + person_data.email + "' name ='email'/><br><br>" +
-        "<input type='submit' value='Update'/><input type='submit' value='Delete'/>" + 
-        "<input type='submit' value='Cancel'/>" +
-        "</form>"
+        "<input type='text' value='" + person_data.email + "' id ='email'/><br><br>" +
+        "<input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/>";
+        /*"</form>";*/
         
        /* "<input type='submit' value='Update'/><input type='submit' value='Delete'/>";*/
+    
     $("body").html(html);
+    
+    //#delete hakee id elementtiä 'delete'. Jos .delete hakisi class elementtiä 'delete'
+    $("#delete").click(function () {
+        
+        $.ajax({
+            
+            method: 'DELETE',
+            url: 'http://localhost:3000/persons/id=' + person_data._id
+        }).done(function (data) {location.reload(true)});  //reload page after delete done
+    });
+    
+    $("#update").click(function () {
+        
+        var temp = {
+            id: person_data._id,
+            name: $("#name").val(),
+            address: $("#address").val(),
+            age: $("#age").val(),
+            email: $("#email").val()
+
+        };
+        $.ajax({
+            
+            method: 'PUT',
+            url: 'http://localhost:3000/persons',
+            //dataType: 'json',
+            data: temp
+        }).done(function (data) {location.reload(true)});  //reload page after update done
+    });
     
 }
 
