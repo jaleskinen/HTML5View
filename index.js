@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var database = require('./modules/database');
 var queries = require('./modules/queries');
 var person = require('./modules/person');
+var horse = require('./modules/horse');
 var app = express();
 
 //============ MIDDLEWARES =================
@@ -32,11 +33,20 @@ app.use('/controllers', express.static(path.join(__dirname, 'controllers')));
 
 app.use('/persons', person);
 
+app.use('/horses', horse);
+
 //============ ROUTERS======================
 
 app.get("/persons", function (req, res) {
     
     queries.getAllPersons(req, res);
+    
+
+});
+
+app.get("/horses", function (req, res) {
+    
+    queries.getAllHorses(req, res);
     
 
 });
