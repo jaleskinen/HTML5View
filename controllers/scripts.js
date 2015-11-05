@@ -21,8 +21,8 @@ $(document).ready(function () {
     var setting =  {
         
         method: "GET",  //default method is GET
-        //url: "http://localhost:3000/persons",
-        url: "http://localhost:3000/horses",
+        url: "http://localhost:3000/persons",
+        //url: "http://localhost:3000/horses",
         dataType: "json"
         
     };
@@ -122,8 +122,8 @@ function buildModifyUI(person_data, i) {
     var setting =  {
         
         method: "GET",  //default method is GET
-        //url: "http://localhost:3000/persons",
-        url: "http://localhost:3000/horses",
+        url: "http://localhost:3000/persons",
+        //url: "http://localhost:3000/horses",
         dataType: "json"
         
     };
@@ -175,8 +175,8 @@ function buildModifyUI(person_data, i) {
         $.ajax({
             
             method: 'DELETE',
-            //url: 'http://localhost:3000/persons/id=' + person_data._id
-            url: 'http://localhost:3000/horses/id=' + person_data._id
+            url: 'http://localhost:3000/persons/id=' + person_data._id
+            //url: 'http://localhost:3000/horses/id=' + person_data._id
         }).done(function (data) {location.reload(true)});  //reload page after delete done
     });
     
@@ -202,11 +202,11 @@ function buildModifyUI(person_data, i) {
         $.ajax({
             
             method: 'PUT',
-            //url: 'http://localhost:3000/persons',
-            url: 'http://localhost:3000/horses',
+            url: 'http://localhost:3000/persons',
+            //url: 'http://localhost:3000/horses',
             //dataType: 'json',
-            //data: temp
-            data: temp_horse
+            data: temp
+            //data: temp_horse
         }).done(function (data) {location.reload(true)});  //reload page after update done
     });
     });    

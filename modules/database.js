@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
-//mongoose.connect('mongodb://localhost:27017/oma', connectionStatus);
-mongoose.connect('mongodb://localhost:27017/testi', connectionStatus);
+mongoose.connect('mongodb://localhost:27017/oma', connectionStatus);
+//mongoose.connect('mongodb://localhost:27017/testi', connectionStatus);
 
 
 /*
