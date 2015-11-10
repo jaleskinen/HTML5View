@@ -37,7 +37,7 @@ app.use('/horses', horse);
 
 //============ ROUTERS======================
 
-app.get("/persons", function (req, res) {
+/*app.get("/persons", function (req, res) {
     
     queries.getAllPersons(req, res);
     
@@ -49,6 +49,6 @@ app.get("/horses", function (req, res) {
     queries.getAllHorses(req, res);
     
 
-});
+});*/
 
 app.listen(3000);
