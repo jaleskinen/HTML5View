@@ -28,6 +28,7 @@ $(document).ready(function () {
         
         method: "GET",  //default method is GET
         url: "http://localhost:3000/persons",
+        //url: "http://localhost:3000/horses",
         dataType: "json"
         
     };
@@ -115,7 +116,7 @@ $(document).ready(function () {
                 //Check if id from button matches on of person id
                 if (click_data.currentTarget.id == data[i]._id) {
                     
-                    buildModifyUI(data[i]);
+                    buildModifyUI(data[i], i);
                     break;
                 }
             }
@@ -124,9 +125,40 @@ $(document).ready(function () {
     });
 });
 
-function buildModifyUI(person_data) {
+function buildModifyUI(person_data, i) {
+    var row3 = 0;
+    var setting =  {
+        
+        method: "GET",  //default method is GET
+        url: "http://localhost:3000/persons",
+        //url: "http://localhost:3000/horses",
+        dataType: "json"
+        
+    };
     
-    var html = /*"<form method='put' enctype='application/json' action='/persons'>" +*/
+    
+    $.ajax(setting).done(function (data) {
+        console.log(data);
+        
+    
+        //get all keys (attribute names)from json object
+        console.log(Object.keys(data[0]));
+     
+        headers = Object.keys(data[0]);
+        //Create headers also dynamically, check that rows length is > 0
+          
+
+        var html =
+                row3 = $("<div></div>");
+                for (k = 1; k < headers.length; k++) {
+                    //Create data and add it to row
+                    $("<h4>" + headers[k] + "</h4>" + "<input type='text' value='" + 
+                      data[i][headers[k]] + "' id ='" + headers[k] + "'/><br>").appendTo(row3);
+                }
+                $("<br><input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/>").appendTo(row3);
+
+ 
+    /*    
         "<h4>Name:</h4>" +
         "<input type='text' value='" + person_data.name + "' id ='name'/><br>" +
         "<h4>Address:</h4>" +
@@ -136,19 +168,23 @@ function buildModifyUI(person_data) {
         "<h4>Email:</h4>" +
         "<input type='text' value='" + person_data.email + "' id ='email'/><br><br>" +
         "<input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/>";
+       
+     */   
         /*"</form>";*/
         
        /* "<input type='submit' value='Update'/><input type='submit' value='Delete'/>";*/
     
     $("body").html(html);
     
-    //#delete hakee id elementtiä 'delete'. Jos .delete hakisi class elementtiä 'delete'
+
+        //#delete hakee id elementtiä 'delete'. Jos .delete hakisi class elementtiä 'delete'
     $("#delete").click(function () {
         
         $.ajax({
             
             method: 'DELETE',
             url: 'http://localhost:3000/persons/id=' + person_data._id
+            //url: 'http://localhost:3000/horses/id=' + person_data._id
         }).done(function (data) {location.reload(true)});  //reload page after delete done
     });
     
@@ -162,15 +198,26 @@ function buildModifyUI(person_data) {
             email: $("#email").val()
 
         };
+        
+        var temp_horse = {
+            id: person_data._id,
+            Nimi: $("#Nimi").val(),
+            Kutsumanimi: $("#Kutsumanimi").val(),
+            Syntymäaika: $("#Syntymäaika").val(),
+            Esittely: $("#Esittely").val()
+
+        };
         $.ajax({
             
             method: 'PUT',
             url: 'http://localhost:3000/persons',
+            //url: 'http://localhost:3000/horses',
             //dataType: 'json',
             data: temp
+            //data: temp_horse
         }).done(function (data) {location.reload(true)});  //reload page after update done
     });
-    
+    });    
 }
 
         // Add person Test 
