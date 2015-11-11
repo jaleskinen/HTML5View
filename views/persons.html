@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8">
+        <!--
+        <meta charset="utf-8">/meta>
+        -->
+        <title>Hello World!</title>
+        <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet"/>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet"/>
+        
+    </head>
+    <body>
+        
+        <div>
+            <nav id="head">
+            </nav>
+            <section>
+                <h1 class="about">Ankkalinna</h1>
+                <input id = "search_text" type="text" placeholder = "search by name"/>
+                <input type="button" value="Search" id="search"/>
+                <table class="table">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+                
+                <!--<a href="addPerson.html">Add Person</a>-->
+                <form action="addPerson.html">
+                        <input type="submit" value="Add Person"><br><br>
+                </form> 
+                
+            </section>
+            <footer data-dummy="">
+                <p>Copyright by Jarmo Leskinen</p>
+            </footer>
+        </div>
+        
+        <script src="/lib/jquery-2.1.4.min.js"></script>
+        <script src="/controllers/scripts.js"></script>
+    </body>      
+</html>

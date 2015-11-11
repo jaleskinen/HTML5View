@@ -18,6 +18,12 @@ function connectionStatus(err, ok) {
     }
 }
 
+var User = mongoose.model('User', {
+    username: {type: String, unique: true},
+    passwors: String,
+    friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'Person'}]
+});
+
 var Person = mongoose.model('Person', {
     name: String,
     address: String,
@@ -27,16 +33,6 @@ var Person = mongoose.model('Person', {
 
 //Using exports object you expose the data to other modules
 exports.Person = Person;
-/*
-var Horse = mongoose.model('Horse', {
-    Nimi: String,
-    Kutsumanimi: String,
-    Syntymäaika: String,
-    Esittely: String
-},'horse');
-*/
-//Using exports object you expose the data to other modules
-//exports.Horse = Horse;
 
 exports.myFunction = function () {
     

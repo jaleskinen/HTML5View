@@ -8,9 +8,30 @@ div{
     
 }
 
+h3{   
+ text-align: center;   
+}
+
 /*use class selector to define style for elements. Note: always start with a dot (.) !!*/
 .mun_keksima{
     background-color: red;  
+}
+
+.about{
+    font-size: 32px;
+    color: blue;
+}
+
+.login_container
+{
+    font-size: 12px;
+    color: blue;
+    width: 500px;
+    margin: 8px auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: darksalmon;
+    padding: 8px;
 }
 
 /*itse määritelty class tyyli*/

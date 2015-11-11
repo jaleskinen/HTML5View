@@ -52,7 +52,6 @@ $(document).ready(function () {
         
         method: "GET",  //default method is GET
         url: "http://localhost:3000/persons",
-        //url: "http://localhost:3000/horses",
         dataType: "json"
         
     };
@@ -154,7 +153,6 @@ function buildModifyUI(person_data, i) {
         
         method: "GET",  //default method is GET
         url: "http://localhost:3000/persons",
-        //url: "http://localhost:3000/horses",
         dataType: "json"
         
     };
@@ -207,7 +205,6 @@ function buildModifyUI(person_data, i) {
             
                 method: 'DELETE',
                 url: 'http://localhost:3000/persons/id=' + person_data._id
-                //url: 'http://localhost:3000/horses/id=' + person_data._id
             }).done(function (data) {
                 location.reload(true);
             });  //reload page after delete done
@@ -223,23 +220,13 @@ function buildModifyUI(person_data, i) {
                 email: $("#email").val()
 
             };
-/*        
-        var temp_horse = {
-            id: person_data._id,
-            Nimi: $("#Nimi").val(),
-            Kutsumanimi: $("#Kutsumanimi").val(),
-            Syntymäaika: $("#Syntymäaika").val(),
-            Esittely: $("#Esittely").val()
 
-        };*/
             $.ajax({
             
                 method: 'PUT',
                 url: 'http://localhost:3000/persons',
-                //url: 'http://localhost:3000/horses',
                 //dataType: 'json',
                 data: temp
-                //data: temp_horse
             }).done(function (data) {
                 location.reload(true);
             });  //reload page after update done
