@@ -150,7 +150,6 @@ $(document).ready(function () {
 });
 
 function buildModifyUI(person_data, i) {
-    //var row3 = 0;
     var setting =  {
         
         method: "GET",  //default method is GET
@@ -176,8 +175,8 @@ function buildModifyUI(person_data, i) {
         row3 = $("<div></div>");
         for (k = 1; k < headers.length; k++) {
             //Create data and add it to row
-            $("<h4>" + headers[k] + "</h4>" + "<input type='text' value='" + 
-              data[i][headers[k]] + "' id ='" + headers[k] + "'/><br>").appendTo(row3);
+            $("<h4>" + headers[k] + "</h4>" + "<input type='text' value='" +
+                data[i][headers[k]] + "' id ='" + headers[k] + "'/><br>").appendTo(row3);
         }
         $("<br><input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/><input type='button' value='Cancel' id = 'cancel'/>").appendTo(row3);
 
@@ -193,35 +192,37 @@ function buildModifyUI(person_data, i) {
         "<input type='text' value='" + person_data.email + "' id ='email'/><br><br>" +
         "<input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/>";
        
-     */   
+     */
         /*"</form>";*/
         
        /* "<input type='submit' value='Update'/><input type='submit' value='Delete'/>";*/
     
-    $("body").html(row3);
+        $("body").html(row3);
     
 
         //#delete hakee id elementtiä 'delete'. Jos .delete hakisi class elementtiä 'delete'
-    $("#delete").click(function () {
+        $("#delete").click(function () {
         
-        $.ajax({
+            $.ajax({
             
-            method: 'DELETE',
-            url: 'http://localhost:3000/persons/id=' + person_data._id
-            //url: 'http://localhost:3000/horses/id=' + person_data._id
-        }).done(function (data) {location.reload(true)});  //reload page after delete done
-    });
+                method: 'DELETE',
+                url: 'http://localhost:3000/persons/id=' + person_data._id
+                //url: 'http://localhost:3000/horses/id=' + person_data._id
+            }).done(function (data) {
+                location.reload(true);
+            });  //reload page after delete done
+        });
     
-    $("#update").click(function () {
+        $("#update").click(function () {
         
-        var temp = {
-            id: person_data._id,
-            name: $("#name").val(),
-            address: $("#address").val(),
-            age: $("#age").val(),
-            email: $("#email").val()
+            var temp = {
+                id: person_data._id,
+                name: $("#name").val(),
+                address: $("#address").val(),
+                age: $("#age").val(),
+                email: $("#email").val()
 
-        };
+            };
 /*        
         var temp_horse = {
             id: person_data._id,
@@ -231,21 +232,23 @@ function buildModifyUI(person_data, i) {
             Esittely: $("#Esittely").val()
 
         };*/
-        $.ajax({
+            $.ajax({
             
-            method: 'PUT',
-            url: 'http://localhost:3000/persons',
-            //url: 'http://localhost:3000/horses',
-            //dataType: 'json',
-            data: temp
-            //data: temp_horse
-        }).done(function (data) {location.reload(true)});  //reload page after update done
-    });
+                method: 'PUT',
+                url: 'http://localhost:3000/persons',
+                //url: 'http://localhost:3000/horses',
+                //dataType: 'json',
+                data: temp
+                //data: temp_horse
+            }).done(function (data) {
+                location.reload(true);
+            });  //reload page after update done
+        });
         //If cancel, just reload original page    
         $("#cancel").click(function () {
             location.reload(true);
         });
-    });    
+    });
 }
 
         // Add person Test 

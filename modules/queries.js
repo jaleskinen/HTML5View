@@ -91,7 +91,7 @@ exports.findPersonsByName = function (req, res) {
     var search_name = req.params.nimi.split("=")[1];
     console.log("search_name: " + search_name);
     
-    db.Person.find({name:{'$regex':'^' + search_name, '$options':'i'}}, function (err, data) {
+    db.Person.find({name: {'$regex': '^' + search_name, '$options': 'i'}}, function (err, data) {
             
         if (err) {
             
