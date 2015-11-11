@@ -45,7 +45,7 @@ app.use('/horses', horse);
 
 });
 */
-
+/*
 app.get("/horses", function (req, res) {
     
     queries.getAllHorses(req, res);
