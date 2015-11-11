@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 router.get('/:nimi', function (req, res) {
     
     db.findPersonsByName(req, res);
-   /* console.log("Get with name router called");*/
+    console.log("Get with name router called");
 });
 
 //Handle POST request for /persons context

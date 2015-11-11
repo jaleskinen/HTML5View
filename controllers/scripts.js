@@ -12,16 +12,40 @@ $(document).ready(function () {
     "use strict";
     console.log("jquery onload triggered");
  
-    $("#search").click(function(){
+    $("#search").click(function() {
         console.log("search triggered");
-        var text = $("#search_text").val();        
+        var text = $("#search_text").val();
 
         $.ajax({
             
             method: 'GET',
-            url: 'http://localhost:3000/persons/nimi=' + text,
+            url: 'http://localhost:3000/persons/nimi=' + text
+        }).done(function(data) {
+            console.log(data);
+            var i = 0, k = 0, row2 = 0, headers = 0;
+            headers = Object.keys(data[0]);
+            console.log("headers.length: " + headers.length);
+            
+            $("tbody").children().remove();
+
+            for (i = 0; i < data.length; i++) {
+
+                //Create data rows also dynamically, check that rows length is > 0
+                if (data.length > 0) {
+
+                    //Create row for data
+                    row2 = $("<tr></tr>");
+                    for (k = 1; k < headers.length; k++) {
+                        //Create data and add it to row
+                        $("<td>" + data[i][headers[k]] + "</td>").appendTo(row2);
+                    }
+                    $("<td><input type='button' id=" + data[i]._id + " value='Modify'/></td>").appendTo(row2);
+                    //Add row to thead element
+                    $(row2).appendTo("tbody");
+                }
+            }
+            
         });
-        
     });
     
     var setting =  {
@@ -126,7 +150,7 @@ $(document).ready(function () {
 });
 
 function buildModifyUI(person_data, i) {
-    var row3 = 0;
+    //var row3 = 0;
     var setting =  {
         
         method: "GET",  //default method is GET
@@ -148,14 +172,14 @@ function buildModifyUI(person_data, i) {
         //Create headers also dynamically, check that rows length is > 0
           
 
-        var html =
-                row3 = $("<div></div>");
-                for (k = 1; k < headers.length; k++) {
-                    //Create data and add it to row
-                    $("<h4>" + headers[k] + "</h4>" + "<input type='text' value='" + 
-                      data[i][headers[k]] + "' id ='" + headers[k] + "'/><br>").appendTo(row3);
-                }
-                $("<br><input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/><input type='button' value='Cancel' id = 'cancel'/>").appendTo(row3);
+        //var html =
+        row3 = $("<div></div>");
+        for (k = 1; k < headers.length; k++) {
+            //Create data and add it to row
+            $("<h4>" + headers[k] + "</h4>" + "<input type='text' value='" + 
+              data[i][headers[k]] + "' id ='" + headers[k] + "'/><br>").appendTo(row3);
+        }
+        $("<br><input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/><input type='button' value='Cancel' id = 'cancel'/>").appendTo(row3);
 
  
     /*    
@@ -174,7 +198,7 @@ function buildModifyUI(person_data, i) {
         
        /* "<input type='submit' value='Update'/><input type='submit' value='Delete'/>";*/
     
-    $("body").html(html);
+    $("body").html(row3);
     
 
         //#delete hakee id elementtiä 'delete'. Jos .delete hakisi class elementtiä 'delete'
@@ -198,7 +222,7 @@ function buildModifyUI(person_data, i) {
             email: $("#email").val()
 
         };
-        
+/*        
         var temp_horse = {
             id: person_data._id,
             Nimi: $("#Nimi").val(),
@@ -206,7 +230,7 @@ function buildModifyUI(person_data, i) {
             Syntymäaika: $("#Syntymäaika").val(),
             Esittely: $("#Esittely").val()
 
-        };
+        };*/
         $.ajax({
             
             method: 'PUT',
