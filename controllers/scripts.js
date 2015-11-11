@@ -155,7 +155,7 @@ function buildModifyUI(person_data, i) {
                     $("<h4>" + headers[k] + "</h4>" + "<input type='text' value='" + 
                       data[i][headers[k]] + "' id ='" + headers[k] + "'/><br>").appendTo(row3);
                 }
-                $("<br><input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/>").appendTo(row3);
+                $("<br><input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/><input type='button' value='Cancel' id = 'cancel'/>").appendTo(row3);
 
  
     /*    
@@ -217,6 +217,10 @@ function buildModifyUI(person_data, i) {
             //data: temp_horse
         }).done(function (data) {location.reload(true)});  //reload page after update done
     });
+        //If cancel, just reload original page    
+        $("#cancel").click(function () {
+            location.reload(true);
+        });
     });    
 }
 
