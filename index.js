@@ -33,6 +33,7 @@ app.use('/controllers', express.static(path.join(__dirname, 'controllers')));
 app.use('/persons', person);
 
 //============ ROUTERS======================
+/*
 
 app.get("/persons", function (req, res) {
     
@@ -40,5 +41,6 @@ app.get("/persons", function (req, res) {
     
 
 });
+*/
 
 app.listen(3000);

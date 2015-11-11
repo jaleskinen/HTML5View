@@ -11,12 +11,18 @@ console.log("Here we go again!");
 $(document).ready(function () {
     "use strict";
     console.log("jquery onload triggered");
-    //$("nav").css("background-color","lightblue");
-    //$("footer").css("background-color", "darkblue");
-    //$("[class]").css("background-color", "grey");
-    //$("#head").css("background-color", "red").css("padding", "20px").css("border-radius", "8px");
-    //$(".about").html("New text from jQuery"); //Add new text.
-    //$("[data-dummy]").html("<p>Hello World</p>"); //Muuttaa data-dummy elementin tekstin
+ 
+    $("#search").click(function(){
+        console.log("search triggered");
+        var text = $("#search_text").val();        
+
+        $.ajax({
+            
+            method: 'GET',
+            url: 'http://localhost:3000/persons/nimi=' + text,
+        });
+        
+    });
     
     var setting =  {
         
@@ -77,6 +83,8 @@ $(document).ready(function () {
                 $(row2).appendTo("tbody");
             }
         }
+        
+        
         
         //Add person start
 

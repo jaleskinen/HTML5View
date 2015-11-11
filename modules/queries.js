@@ -29,7 +29,11 @@ exports.saveNewPerson = function (req, res) {
     //Save it to database
     personTemp.save(function (err, ok) {
         
-        res.send("Database action done");
+        /*res.send("Database action done");*/
+        /*res.send("<head><meta http-equiv='Refresh' content='0; url=./index.html'></head>");*/
+        
+        //Redirect to root context
+        res.redirect('/');
     });
 };
 
@@ -79,6 +83,25 @@ exports.updatePerson = function (req, res) {
         }
         
     });
-
+};
+/*
+This function search persons from person colletion by name or begin letters of name. Sort by name, ascending order.
+*/
+exports.findPersonsByName = function (req, res) {
+    var search_name = req.params.nimi.split("=")[1];
+    console.log("search_name: " + search_name);
     
+    db.Person.find({name:{'$regex':'^' + search_name, '$options':'i'}}, function (err, data) {
+            
+        if (err) {
+            
+            console.log(err.message);
+            res.send("Error in search!!");
+        } else {
+            console.log(data);
+            res.send(data);
+        }
+       
+       
+    });
 };
