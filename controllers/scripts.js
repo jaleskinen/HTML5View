@@ -51,7 +51,9 @@ $(document).ready(function () {
     var setting =  {
         
         method: "GET",  //default method is GET
-        url: "http://localhost:3000/persons",
+        //url: "http://localhost:3000/persons",
+        url: "http://localhost:3000/friends/username=" +
+        localStorage['username'],
         dataType: "json"
         
     };
@@ -69,7 +71,7 @@ $(document).ready(function () {
             headers = Object.keys(data[0]);
             //Create row for headers
             row = $("<tr></tr>");
-            for (i = 1; i < headers.length; i++) {
+            for (i = 1; i < headers.length - 1; i++) {
                 //Create header and add it to row
                 $("<th>" + headers[i] + "</th>").appendTo(row);
             }
@@ -98,7 +100,7 @@ $(document).ready(function () {
 
                 //Create row for data
                 row2 = $("<tr></tr>");
-                for (k = 1; k < headers.length; k++) {
+                for (k = 1; k < headers.length - 1; k++) {
                     //Create data and add it to row
                     $("<td>" + data[i][headers[k]] + "</td>").appendTo(row2);
                 }

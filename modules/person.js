@@ -11,9 +11,9 @@ router.get('/', function (req, res) {
 
 //Handle GET request for /persons context, attribute "nimi". Attribute count makes difference, not name.
 router.get('/:nimi', function (req, res) {
-    
+    console.log("Get with name router called");    
     db.findPersonsByName(req, res);
-    console.log("Get with name router called");
+
 });
 
 //Handle POST request for /persons context

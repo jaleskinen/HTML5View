@@ -114,7 +114,47 @@ exports.registerFriend = function (req, res) {
 
             res.send({status: err.message});
         } else {
-            res.send({status: "OK"});
+            res.send({status: "Register OK"});
         }
+    });
+};
+
+exports.loginFriend = function (req, res) {
+    
+    var searchObject = {
+        
+        username: req.body.username,
+        password: req.body.password
+    };
+    
+    db.Friends.find(searchObject, function (err, data) {
+        
+        if (err) {
+            
+            res.send({status: err.message});
+        } else {
+            // =< means wrong username or password, readymade HTTP headers for theme messages??
+            if (data.length > 0) {
+                
+                res.send({status: "Login OK"});
+                console.log("Login OK");
+            } else {
+                res.send({status: "Wrong username or password"});
+            }
+        }
+    });
+};
+
+exports.getFriendsByUsername = function (req, res) {
+    
+    var usern = req.params.username.split("=")[1];
+    db.Friends.find({username: usern}).populate('friends').exec(function (err, data) {
+        if (err) {
+
+            console.log(err);
+        } else {
+            console.log("friends: " + data);
+            res.send(data.friends);
+        } 
     });
 };

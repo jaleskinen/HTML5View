@@ -11,7 +11,7 @@
  
         
     </head>
-    <body>
+    <body class="loginbody_container">
         <h1>Add new contact info</h1>
         
         <form method="post" enctype="application/json" action="/persons">
@@ -26,8 +26,7 @@
             <input type="text" placeholder="email@com" name ="email" /><br><br>
             <input type="submit" value="Add"/>
             <input Type="submit" value="Cancel" onClick="history.go(-1);return true;"/>
-        
-        
+          
         </form>
         
         <script src="/lib/jquery-2.1.4.min.js"></script>
