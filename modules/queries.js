@@ -1,3 +1,7 @@
+/*JSLint warning settings*/
+/*jslint  plusplus: true, devel: true*/
+/*global $ */
+
 var db = require('./database');
 
 /*
@@ -17,7 +21,6 @@ exports.getAllPersons = function (req, res) {
         }
     });
 };
-
 
 /*
 This function saves new person information to person colletion
@@ -55,9 +58,7 @@ exports.deletePerson = function (req, res) {
             
             res.send("Delete done");
         }
-       
     });
-    
 };
 
 /*
@@ -81,9 +82,9 @@ exports.updatePerson = function (req, res) {
             res.send("Updated");
             //res.send({data:"ok"});
         }
-        
     });
 };
+
 /*
 This function search persons from person colletion by name or begin letters of name. Sort by name, ascending order.
 */
@@ -101,7 +102,19 @@ exports.findPersonsByName = function (req, res) {
             console.log(data);
             res.send(data);
         }
-       
-       
+    });
+};
+
+exports.registerFriend = function (req, res) {
+    
+    var friend = new db.Friends(req.body);
+    friend.save(function (err) {
+        
+        if (err) {
+
+            res.send({status: err.message});
+        } else {
+            res.send({status: "OK"});
+        }
     });
 };

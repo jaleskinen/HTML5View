@@ -20,7 +20,7 @@ function connectionStatus(err, ok) {
 
 var User = mongoose.model('User', {
     username: {type: String, unique: true},
-    passwors: String,
+    password: String,
     friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'Person'}]
 });
 
@@ -29,10 +29,11 @@ var Person = mongoose.model('Person', {
     address: String,
     age: {type: Number},
     email: String
-}, 'person');
+}, 'person'); //tämä argumetti ('person') vain jos person tietokanta jo olemassa. Jos tätä ei anna niin mongoose tekee tietokannan ('persons')
 
 //Using exports object you expose the data to other modules
 exports.Person = Person;
+exports.Friends = User;
 
 exports.myFunction = function () {
     

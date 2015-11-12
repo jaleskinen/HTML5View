@@ -4,8 +4,9 @@ p{
     font-size: 22px;
 }
 
-div{
-    
+footer{
+    font-size: 12px;
+    color: navy;
 }
 
 h3{   
@@ -27,23 +28,27 @@ h3{
     font-size: 12px;
     color: blue;
     width: 500px;
-    margin: 8px auto;
+    margin: 18px auto;
     border: 2px solid black;
-    border-radius: 5px;
-    background-color: darksalmon;
+    border-radius: 15px;
+    //background-color: darksalmon;
+    background: linear-gradient(to right, rgba(0,0,255,0), rgba(0,0,255,0.5));
     padding: 8px;
+}
+
+.loginbody_container
+{
+    background: linear-gradient(to right, rgba(0,0,255,0), rgba(0,0,255,0.5));
+
 }
 
 /*itse määritelty class tyyli*/
 .fancy{
     color: red;
-<<<<<<< HEAD
     border: 2px;
     background-color: blue;
-=======
     border: 4px;
     border-style: solid;
->>>>>>> 627d6bdf3fc33b0f4b8ce481da843515629c1179
     border-radius: 8px;
     background-color: coral;
 }
@@ -53,7 +58,7 @@ h3{
 #joku_tyyli{
     margin: 100px;
 }
-
+/*
 p:hover{
   background-color: green;   
-} 
+} */

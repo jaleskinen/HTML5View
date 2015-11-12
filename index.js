@@ -5,6 +5,7 @@ var database = require('./modules/database');
 var queries = require('./modules/queries');
 var person = require('./modules/person');
 var app = express();
+var user = require('./modules/user');
 
 //============ MIDDLEWARES =================
 // Must be befoer routers, sometimes also order is fixed
@@ -31,6 +32,7 @@ app.use('/lib', express.static(path.join(__dirname, 'lib')));
 app.use('/controllers', express.static(path.join(__dirname, 'controllers')));
 
 app.use('/persons', person);
+app.use('/friends', user);
 
 //============ ROUTERS======================
 /*
