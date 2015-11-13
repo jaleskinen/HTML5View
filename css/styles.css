@@ -1,7 +1,7 @@
 /*use element selector to select all p elements for this style*/
 p{
-    color: blue;
-    font-size: 22px;
+    color: maroon;
+    font-size: 14px;
 }
 
 footer{
@@ -39,6 +39,7 @@ h3{
 .loginbody_container
 {
     background: linear-gradient(to right, rgba(0,0,255,0), rgba(0,0,255,0.5));
+    padding: 18px;
 
 }
 

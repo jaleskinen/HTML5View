@@ -1,9 +1,10 @@
-/*JSLint warning settings*/
-/*jslint  plusplus: true, devel: true*/
-/*global $ */
+/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */
+/*global define */
+/*these vars are defined here because of lint errors*/
+var $, loginHandler, registerHandler, loginResponseHandler, registerResponseHandler;
 
 $(document).ready(function () {
-    
+    "use strict";
     console.log("Login or Register page loaded");
     
     $("#login").click(loginHandler);
@@ -14,7 +15,7 @@ $(document).ready(function () {
 /*This function is called when login button is pressed*/
 
 function loginHandler(event) {
-    
+    "use strict";
     console.log("Login request");
     
     var requestData = {
@@ -26,8 +27,10 @@ function loginHandler(event) {
     console.log("username: " + requestData.username);
     console.log("password: " + requestData.password);
     
-    localStorage['username'] = $("#username").val();
-    sessionStorage['user'] = $("#username").val();
+//    localStorage['username'] = $("#username").val(); //localstorage tallentaa kunnes se ylikirjoitetaan
+//    sessionStorage['user'] = $("#username").val(); //localstorage tallentaa kunnes sessio lopetetaan
+    localStorage.username = $("#username").val(); //localstorage tallentaa kunnes se ylikirjoitetaan
+    sessionStorage.user = $("#username").val(); //localstorage tallentaa kunnes sessio lopetetaan
     
     
     //Send login request to server
@@ -42,12 +45,12 @@ function loginHandler(event) {
 
 /*This function is called when register response arrives in some point of time*/
 function loginResponseHandler(data) {
-    
+    "use strict";
     // If login status was ok
     if (data.status === "Login OK") {
         
         // Ask browser to load person.html file from node server
-        window.location.href= 'http://localhost:3000/persons.html';
+        window.location.href = 'http://localhost:3000/persons.html';
     } else {
         
         $("#status").text(data.status);
@@ -55,7 +58,7 @@ function loginResponseHandler(data) {
 }
 
 function renderPersonView(data) {
-    
+    "use strict";
     console.log(data);
     $("html").html(data);
 }
@@ -63,6 +66,7 @@ function renderPersonView(data) {
 /*This function is called when register button is pressed*/
 
 function registerHandler(event) {
+    "use strict";
     console.log("Register request");
 
     var requestData = {
@@ -86,7 +90,7 @@ function registerHandler(event) {
 
 /*This function is called when register response arrives in some point of time*/
 function registerResponseHandler(data) {
-    
+    "use strict";
     $("#status").text(data.status);
 
     

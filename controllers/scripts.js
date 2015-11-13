@@ -1,6 +1,7 @@
-/*JSLint warning settings*/
-/*jslint  plusplus: true, devel: true*/
-/*global $ */
+/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */
+/*global define */
+/*these vars are defined here because of lint errors*/
+var $, headers, row3, k, i, buildModifyUI, clickModifyButton;
 
 console.log("Here we go again!");
 
@@ -10,9 +11,9 @@ console.log("Here we go again!");
 //Wait document ready event
 $(document).ready(function () {
     "use strict";
-    console.log("jquery onload triggered");
+    console.log("scripts.js document ready");
  
-    $("#search").click(function() {
+    $("#search").click(function () {
         console.log("search triggered");
         var text = $("#search_text").val();
 
@@ -20,7 +21,7 @@ $(document).ready(function () {
             
             method: 'GET',
             url: 'http://localhost:3000/persons/nimi=' + text
-        }).done(function(data) {
+        }).done(function (data) {
             console.log(data);
             var i = 0, k = 0, row2 = 0, headers = 0;
             headers = Object.keys(data[0]);
@@ -39,12 +40,40 @@ $(document).ready(function () {
                         //Create data and add it to row
                         $("<td>" + data[i][headers[k]] + "</td>").appendTo(row2);
                     }
-                    $("<td><input type='button' id=" + data[i]._id + " value='Modify'/></td>").appendTo(row2);
+                    $("<td><input type='button' class='btn btn-default' id=" + data[i]._id + " value='Modify'/></td>").appendTo(row2);
                     //Add row to thead element
                     $(row2).appendTo("tbody");
+                    //Optimise this code later...
+ /*                   $("[type=button]").click(function (click_data) {
+                        console.log(click_data);
+                        for (i = 0; i < data.length; i++) {
+
+                            //Check if id from button matches on of person id
+                            if (click_data.currentTarget.id === data[i]._id) {
+
+                                buildModifyUI(data[i], i);
+                                break;
+                            }
+                        }
+                    });*/
                 }
             }
-            
+  
+            //Optimise this code later...
+            $("[type=button]").click(function (click_data) {
+                clickModifyButton(click_data, data);
+
+ /*              console.log(click_data);
+                for (i = 0; i < data.length; i++) {
+
+                    //Check if id from button matches on of person id
+                    if (click_data.currentTarget.id === data[i]._id) {
+
+                        buildModifyUI(data[i], i);
+                        break;
+                    }
+                }*/
+            });
         });
     });
     
@@ -53,7 +82,8 @@ $(document).ready(function () {
         method: "GET",  //default method is GET
         //url: "http://localhost:3000/persons",
         url: "http://localhost:3000/friends/username=" +
-        localStorage['username'],
+            //localStorage['username'],
+            localStorage.username,
         dataType: "json"
         
     };
@@ -104,7 +134,7 @@ $(document).ready(function () {
                     //Create data and add it to row
                     $("<td>" + data[i][headers[k]] + "</td>").appendTo(row2);
                 }
-                $("<td><input type='button' id=" + data[i]._id + " value='Modify'/></td>").appendTo(row2);
+                $("<td><input type='button' class='btn btn-default' id=" + data[i]._id + " value='Modify'/></td>").appendTo(row2);
                 //Add row to thead element
                 $(row2).appendTo("tbody");
             }
@@ -134,23 +164,43 @@ $(document).ready(function () {
        //Get all elements from DOM where element has attribute 'tye' with value 'button'
         //Then add event handler for click event for each of them.
         $("[type=button]").click(function (click_data) {
+            clickModifyButton(click_data, data);
 
-            console.log(click_data);
+/*            console.log("click_data: " + click_data);
             for (i = 0; i < data.length; i++) {
                 
                 //Check if id from button matches on of person id
-                if (click_data.currentTarget.id == data[i]._id) {
+                if (click_data.currentTarget.id === data[i]._id) {
                     
                     buildModifyUI(data[i], i);
                     break;
                 }
-            }
+            }*/
         });
         
     });
 });
 
+//Search button clicked
+function clickModifyButton(click_data, data) {
+    "use strict";
+    console.log("data.length: " + data.length);
+    console.log("click_data.currentTarget.id: " + click_data.currentTarget.id);
+    
+    for (i = 0; i < data.length; i++) {
+
+        //Check if id from button matches on of person id
+        if (click_data.currentTarget.id === data[i]._id) {
+            console.log("data[i]._id" + data[i]._id);
+            buildModifyUI(data[i], i);
+            break;
+        }
+    }
+}
+
 function buildModifyUI(person_data, i) {
+    "use strict";
+
     var setting =  {
         
         method: "GET",  //default method is GET
@@ -168,17 +218,16 @@ function buildModifyUI(person_data, i) {
         console.log(Object.keys(data[0]));
      
         headers = Object.keys(data[0]);
-        //Create headers also dynamically, check that rows length is > 0
-          
+        //Create headers also dynamically, check that rows length is > 0     
 
         //var html =
         row3 = $("<div></div>");
         for (k = 1; k < headers.length; k++) {
             //Create data and add it to row
             $("<h4>" + headers[k] + "</h4>" + "<input type='text' value='" +
-                data[i][headers[k]] + "' id ='" + headers[k] + "'/><br>").appendTo(row3);
+                person_data[headers[k]] + "' id ='" + headers[k] + "'/><br>").appendTo(row3);
         }
-        $("<br><input type='button' value='Update' id = 'update'/><input type='button' value='Delete' id = 'delete'/><input type='button' value='Cancel' id = 'cancel'/>").appendTo(row3);
+        $("<br><input type='button' value='Update' class='btn btn-default' id = 'update'/><input type='button' class='btn btn-default' value='Delete' id = 'delete'/><input type='button' class='btn btn-default' value='Cancel' id = 'cancel'/>").appendTo(row3);
 
  
     /*    
@@ -240,47 +289,47 @@ function buildModifyUI(person_data, i) {
     });
 }
 
-        // Add person Test 
-/*
+function buildTable(data) {
+    "use strict";
+    var i = 0, k = 0, row2 = 0, headers = 0;
+    headers = Object.keys(data[0]);
 
-function omaFunction() {
-    document.getElementById("name").value = "Testi nimi";
-    document.getElementById("address").value = "Testi osoite";
-    document.getElementById("age").value = "999";
-    document.getElementById("email").value = "Testi@email";
-};
-*/
+    $("tbody").children().remove();
+    $("thead").children().remove();
 
-        //test end
-/*$(document).ready(domReady);
-function domReady(){
+    for (i = 0; i < data.length; i++) {
 
-}*/
+        //Create data rows also dynamically, check that rows length is > 0
+        if (data.length > 0) {
 
-/*
-window.onload = function (event) {
-    console.log(event);
-    para1.innerHTML = "Changed from JS";
-    para1.style.backgroundColor = "yellow";
-    
+            //Create row for data
+            row2 = $("<tr></tr>");
+            for (k = 1; k < headers.length; k++) {
+                //Create data and add it to row
+                $("<td>" + data[i][headers[k]] + "</td>").appendTo(row2);
+            }
+            $("<td><input type='button' class='btn btn-default' id=" + data[i]._id + " value='Modify'/></td>").appendTo(row2);
+            //Add row to thead element
+            $(row2).appendTo("tbody");
+        }
+    }
+
+        //Get all elements from DOM where element has
+    //attribute 'type' with value 'button'. Then add
+    //event handler for click event for each of them
+    $("[type=button]").click(function (click_data) {
+
+        //Loop trough all the values
+        for (i = 0; i < data.length; i++) {
+
+            //Check if id from button matches one of 
+            //person id
+            if (click_data.currentTarget.id === data[i]._id) {
+                buildModifyUI(data[i]);
+                break;
+            }
+
+
+        }
+    });
 }
-*/
-
-/* Sama asia eri toteutuksella */
-/*
-window.onload = domReady;
-function domReady(event) {
-     console.log(event);
-    para1.innerHTML = "Changed from JS";
-    para1.style.backgroundColor = "grey";
-}
-*/
-
-/*
-function someFunction(nimi) {
-    console.log(nimi)
-}
-
-someFunction(22);
-someFunction("Jarmo");
-*/

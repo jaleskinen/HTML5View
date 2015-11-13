@@ -2,34 +2,56 @@
 <html lang="fi">
     <head>
         <meta charset="utf-8">
-       <!-- <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>-->
 
         <title>Person Add</title>
-        <link href="/css/styles.css" type="text/css" rel="stylesheet"/>
-        <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-        <link href="/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet"/>
+        <link href="../css/styles.css" type="text/css" rel="stylesheet"/>
+        <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="../css/bootstrap-theme.min.css" type="text/css" rel="stylesheet"/>
+        <script src="../lib/jquery-2.1.4.min.js"></script> 
+        <script>
+            $(document).ready(function() {
+                $("#sendBtn").click(function(){
+                    
+                    var data = {
+                        
+                        user: localStorage.username,
+                        name: $("#name").val(),
+                        address: $("#address").val(),
+                        age: $("#age").val(),
+                        email: $("#email").val()
+                    }
+                    
+                    $.ajax({
+                        method: 'POST',
+                        url: 'http://localhost:3000/persons',
+                        data: data,
+                        //datatype: 'json'
+                    }).done(function (data) {
+                         window.location = "./persons.html";
+                    });
+                });
+            });
+        </script>
  
-        
     </head>
     <body class="loginbody_container">
         <h1>Add new contact info</h1>
         
-        <form method="post" enctype="application/json" action="/persons">
+        <form>
             
             <h4>Name:</h4>
-            <input type="text" required placeholder="Full name" name ="name"/><br>
+            <input type="text" required placeholder="Full name" id ="name"/><br>
             <h4>Address:</h4>
-            <input type="text"  placeholder="Full address" name ="address" /><br>
+            <input type="text"  placeholder="Full address" id ="address" /><br>
             <h4>Age:</h4>
-            <input type="number" placeholder="Age" name ="age" min="0" /><br>
+            <input type="number" placeholder="Age" id ="age" min="0" /><br>
             <h4>Email:</h4>
-            <input type="text" placeholder="email@com" name ="email" /><br><br>
-            <input type="submit" value="Add"/>
-            <input Type="submit" value="Cancel" onClick="history.go(-1);return true;"/>
+            <input type="text" placeholder="email@com" id ="email" /><br><br>
+            <input id ="sendBtn" type="button" class="btn btn-default" value="Add" />
+            <input id ="cancelBtn" Type="button" value="Cancel" class="btn btn-default" onClick="history.go(-1);"/>
           
         </form>
         
-        <script src="/lib/jquery-2.1.4.min.js"></script>
-        <script src="/controllers/scripts.js"></script>
+        <script src="../controllers/scripts.js"></script>
     </body>   
 </html>

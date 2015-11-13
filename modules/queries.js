@@ -1,6 +1,7 @@
-/*JSLint warning settings*/
-/*jslint  plusplus: true, devel: true*/
-/*global $ */
+/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */
+/*global define */
+/*these vars are defined here because of lint errors*/
+var require, exports;
 
 var db = require('./database');
 
@@ -8,7 +9,7 @@ var db = require('./database');
 This function gets all ducuments from person colletion
 */
 exports.getAllPersons = function (req, res) {
-    
+    "use strict";
     db.Person.find(function (err, data) {
         
         if (err) {
@@ -26,17 +27,18 @@ exports.getAllPersons = function (req, res) {
 This function saves new person information to person colletion
 */
 exports.saveNewPerson = function (req, res) {
-    
+    "use strict";
     var personTemp = new db.Person(req.body);
     
     //Save it to database
     personTemp.save(function (err, ok) {
-        
-        /*res.send("Database action done");*/
-        /*res.send("<head><meta http-equiv='Refresh' content='0; url=./index.html'></head>");*/
-        
-        //Redirect to root context
-        res.redirect('/');
+        db.Friends.update({username: req.body.user},
+                          {$push: {'friends': personTemp._id}},
+                          function (err, model) {
+            
+        //Make a redirect to root context
+                res.redirect('/');
+            });
     });
 };
 
@@ -44,7 +46,7 @@ exports.saveNewPerson = function (req, res) {
 This function deletes one person from person colletion
 */
 exports.deletePerson = function (req, res) {
-    
+    "use strict";
     //Here req.params.id return string "id=35635463456345f"
     //Split function splits the string from "0" and creates an array
     //where [0] contains "id" and [1] contains "35635463456345f"
@@ -65,7 +67,7 @@ exports.deletePerson = function (req, res) {
 This method updates person information to person colletion
 */
 exports.updatePerson = function (req, res) {
-    
+    "use strict";
     var updateData = {
         name: req.body.name,
         address: req.body.address,
@@ -89,6 +91,7 @@ exports.updatePerson = function (req, res) {
 This function search persons from person colletion by name or begin letters of name. Sort by name, ascending order.
 */
 exports.findPersonsByName = function (req, res) {
+    "use strict";
     var search_name = req.params.nimi.split("=")[1];
     console.log("search_name: " + search_name);
     
@@ -106,7 +109,7 @@ exports.findPersonsByName = function (req, res) {
 };
 
 exports.registerFriend = function (req, res) {
-    
+    "use strict";
     var friend = new db.Friends(req.body);
     friend.save(function (err) {
         
@@ -120,7 +123,7 @@ exports.registerFriend = function (req, res) {
 };
 
 exports.loginFriend = function (req, res) {
-    
+    "use strict";
     var searchObject = {
         
         username: req.body.username,
@@ -146,7 +149,7 @@ exports.loginFriend = function (req, res) {
 };
 
 exports.getFriendsByUsername = function (req, res) {
-    
+    "use strict";
     var usern = req.params.username.split("=")[1];
     db.Friends.find({username: usern}).populate('friends').exec(function (err, data) {
         if (err) {
@@ -154,7 +157,7 @@ exports.getFriendsByUsername = function (req, res) {
             console.log(err);
         } else {
             console.log("friends: " + data);
-            res.send(data.friends);
-        } 
+            res.send(data[0].friends);
+        }
     });
 };
