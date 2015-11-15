@@ -37,14 +37,4 @@ app.use('/friends', user);
 //============ ROUTERS======================
 
 
-/*
-
-app.get("/persons", function (req, res) {
-    
-    queries.getAllPersons(req, res);
-    
-
-});
-*/
-
 app.listen(3000);

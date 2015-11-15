@@ -3,35 +3,31 @@ var db = require('./queries');
 
 var router = express.Router();
 
-//Handle GET request for /persons context
-router.get('/', function (req, res) {
+//Handle GET requets for /persons context
+router.get('/',function(req,res){
     
-    db.getAllPersons(req, res);
+    db.getAllPersons(req,res);
 });
 
-//Handle GET request for /persons context, attribute "nimi". Attribute count makes difference, not name.
-router.get('/:nimi', function (req, res) {
-    console.log("Get with name router called");    
-    db.findPersonsByName(req, res);
 
+router.get('/:nimi/:username',function(req,res){
+    
+    db.findPersonsByName(req,res);
 });
 
-//Handle POST request for /persons context
-router.post('/', function (req, res) {
+//Handle POST requets for /persons context
+router.post('/',function(req,res){
     
-    db.saveNewPerson(req, res);
+    db.saveNewPerson(req,res);
 });
 
-//Handle UPDATE request for /persons context
-router.put('/', function (req, res) {
+router.put('/',function(req,res){
     
-    db.updatePerson(req, res);
+    db.updatePerson(req,res);
 });
 
-//Handle DELETE request for /persons context, id comes from request (scripts.js)
-router.delete('/:id', function (req, res) {
-    
-    db.deletePerson(req, res);
+router.delete('/:id/:username',function(req,res){
+    db.deletePerson(req,res);
 });
 
 module.exports = router;

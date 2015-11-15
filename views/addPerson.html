@@ -17,8 +17,8 @@
                         user: localStorage.username,
                         name: $("#name").val(),
                         address: $("#address").val(),
-                        age: $("#age").val(),
-                        email: $("#email").val()
+                        age: $("#age").val()
+                        //email: $("#email").val()
                     }
                     
                     $.ajax({
@@ -44,9 +44,9 @@
             <h4>Address:</h4>
             <input type="text"  placeholder="Full address" id ="address" /><br>
             <h4>Age:</h4>
-            <input type="number" placeholder="Age" id ="age" min="0" /><br>
-            <h4>Email:</h4>
-            <input type="text" placeholder="email@com" id ="email" /><br><br>
+            <input type="number" placeholder="Age" id ="age" min="0" /><br><br>
+            <!--<h4>Email:</h4>
+            <input type="text" placeholder="email@com" id ="email" /><br><br>-->
             <input id ="sendBtn" type="button" class="btn btn-default" value="Add" />
             <input id ="cancelBtn" Type="button" value="Cancel" class="btn btn-default" onClick="history.go(-1);"/>
           
