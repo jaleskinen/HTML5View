@@ -31,9 +31,31 @@ $(document).ready(function () {
 /**
   *Creates a modify view for our application
   */
-function buildModifyUI(person_data) {
+function buildModifyUI(person_data, data) {
     "use strict";
-    console.log("buildModifyUI: " + person_data);
+    console.log("data.length: " + data.length);
+    var headers = Object.keys(data[0]);
+    var row_html;
+    console.log("headers.length: " + headers.length);
+
+    
+    // Testi begin
+    var html = $("<div></div>");
+    $("<h1 class='oma_h1'>Muokkaa/poista tietoja</h1>").appendTo(html);
+    for (var k = 1; k < (headers.length-1) ; k++) {
+        
+            //Create data and add it to row          
+            $("<h4 class ='oma_h4'>" + [headers[k]] + "</h4>").appendTo(html);
+            $("<input type='text' style='text-align: center' value='" + data[i][headers[k]] + "' id ='" + [headers[k]] + "'/><br>").appendTo(html);
+        }
+       /* if (location.pathname == "/horse.html" ) {    
+            $("<form target='_blank' action='http://www.sukuposti.net/hevonen/hae'><input type='submit' value='Hae Linkki'></form>").appendTo(row_html);
+        };*/
+        $("<br><br><input type='button' class='btn btn-primary btn-sm' value='Update'" + "id = 'update'/><input type='button' class='btn btn-primary btn-sm' value='Delete' id = 'delete'/><input type='button' class='btn btn-primary btn-sm' value='Cancel' id = 'cancel'/>").appendTo(html);   
+    
+    //Test end
+    
+ /*
     var html = "<h1 class='about'>Modify</h1>";
     html += "<h4>Name</h4>";
     html += "<input id='name' type='text' value='" + person_data.name + "'/><br>";
@@ -44,7 +66,9 @@ function buildModifyUI(person_data) {
     html += "<input type='button' class='btn btn-default' value='Update' id='update'/>";
     html += "<input type='button' class='btn btn-default' value='Delete' id='delete'/>";
     html += "<input type='button' class='btn btn-default' value='Cancel' id='cancel'/>";
-     
+     */
+    
+    
     $("body").html(html);
     
     $("#delete").click(function () {
@@ -129,7 +153,7 @@ function buildTable(data) {
             //Check if id from button matches one of 
             //person id
             if (click_data.currentTarget.id === data[i]._id) {
-                buildModifyUI(data[i]);
+                buildModifyUI(data[i], data);
                 break;
             }
         }
